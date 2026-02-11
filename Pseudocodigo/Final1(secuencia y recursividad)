@@ -1,3 +1,6 @@
+Ejercicio 1:secuencia de datos elementales.
+Ejercicio 2:recursividad.
+
 Accion ejercicio1 es 
 Ambiente
     sec : secuencia de caracter;
@@ -82,6 +85,7 @@ funcion experimento (camino: entero):entero es
         == 2: experimento := 5 + experimento(Random());
         == 3: experimento := 7;
 fin_funcion 
+
 
 
 
