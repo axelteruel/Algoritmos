@@ -1,0 +1,23 @@
+Accion ----- es
+Ambiente
+Entrada: secuencia de caracter;
+Salida: secuencia de caracter;
+V: caracter;
+
+Proceso
+Escribir ("Este programa devuelve una secuencia similar a la de entrada pero si los $");
+
+Arrancar (entrada); Avanzar (entrada, V);
+Crear (salida);
+
+Mientras NFDS (entrada) hacer
+    Si V <> $ entonces
+        Escribir (salida, V)
+    fin_si
+    Avanzar (entrada, V)
+fin_mientras
+
+Cerrar (entrada);
+Cerrar (salida);
+
+fin_accion

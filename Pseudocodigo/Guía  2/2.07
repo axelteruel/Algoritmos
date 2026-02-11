@@ -1,0 +1,49 @@
+Accion ----- es 
+Ambiente
+Persona = registro
+    nombre : AN(30);
+    DNI : N(8);
+    nro_mesa : N(3);
+    nro_circuito : N(3);
+    clase : N(4);
+    direccion : AN(30);
+    observaciones : AN(100);
+    partido : (0, 1, 2, 3);
+fin_registro
+
+aux = registro
+    nombre : AN(30);
+    DNI : N(8);
+    direccion : AN(30);
+fin_registro
+
+padron: archivo de Persona;
+per: Persona;
+AfiliadosC : archivo de aux;
+Desafiliados1940 : archivo de aux;
+
+Proceso
+Abrir E/(padron); Avanzar(padron, per);
+Abrir /S(Desafiliados1940); Abrir /S(AfiliadosC);
+
+Mientras NFDA (padron) hacer
+    Si per.partido == 3 entonces
+        aux.nombre := per.nombre;
+        aux.DNI := per.DNI;
+        aux.direccion := per.direccion;
+        Escribir (AfiliadosC, aux);
+    fin_si
+    Si per.partido == 0 y per.clase > 1940 entonces
+        aux.nombre := per.nombre;
+        aux.DNI := per.DNI;
+        aux.direccion := per.direccion;
+        Escribir (Desafiliados1940, aux);
+    fin_si
+    Avanzar (padron, per);
+fin_mientras
+
+Cerrar(Desafiliados1940);
+Cerrar(padron);
+Cerrar(AfiliadosC);
+
+fin_accion

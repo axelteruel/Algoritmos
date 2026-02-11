@@ -1,0 +1,42 @@
+Accion ----- es
+Ambiente
+Producto = Registro 
+    codigo : N(5);
+    tipo : (1, 2, 3);
+    marca : AN(20);
+    modelo : N(4);
+    descripcion: AN(100);
+    existencia: N(4);
+    precio_unitario : N(5);
+fin_registro
+
+Inv : Archivo de Producto;
+prod : Producto;
+aux : Producto;
+Sal : Archivo de Producto;
+
+cant1, cant2, cant3 : entero;
+Proceso
+Abrir E/ (Inv); Avanzar (Inv, prod);
+Abrir /S (Sal);
+cant1 := 0;
+cant2 := 0;
+cant3 := 0;
+
+Mientras NFDA(Inv) hacer
+    aux := prod
+    Según prod.tipo hacer
+        == 1: aux.precio_unitario := prod.precio_unitario * 1,10;
+                cant1 := cant1 + 1;
+        == 2: aux.precio_unitario := prod.precio_unitario * 1,25;
+                cant2 := cant2 + 1;
+        == 3: aux.precio_unitario := prod.precio_unitario * 1,50;
+                cant3 := cant3 + 1; 
+    fin_segun
+
+    Escribir (Sal, aux);
+    Avanzar (Inv, prod);
+fin_mientras
+
+Cerrar (Sal);
+Cerrar (Inv);

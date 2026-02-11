@@ -1,0 +1,44 @@
+Accion ----- es
+Ambiente
+    Hab : secuencia de enteros;
+    V : entero;
+    Total : entero;
+    masc, fem, men, may : entero;
+Proceso
+Escribir ("Este programa realiza un proceso estadistico de la población de las capitales")
+
+Arrancar (Hab);
+Total:= 0;
+Masc := 0;
+fem := 0;
+men := 0;
+may := 0;
+Para i:= 1 hasta 23 hacer
+    Avanzar (Hab, V);
+    Total := Total + V;
+    masc := masc + V;
+    men := men + V;
+
+    Avanzar (Hab, V);
+    Total := Total + V;
+    fem := fem + V;
+    men := men + V;
+
+    Avanzar (Hab, V);
+    Total := Total + V;
+    masc := masc + V;
+    may := may + V;
+
+    Avanzar (Hab, V);
+    Total := Total + V;
+    fem := fem + V;
+    may := may + V;  
+fin_para
+
+Cerrar (Hab);
+Escribir ("Mujeres:" fem / Total * 100, "%");
+Escribir ("Hombres:" masc / Total * 100, "%");
+Escribir ("Menores:" men / Total * 100, "%");
+Escribir ("Mayores:" may / Total * 100, "%");
+
+fin_accion

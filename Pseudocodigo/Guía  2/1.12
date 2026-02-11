@@ -1,0 +1,47 @@
+Accion ----- es
+Ambiente
+Sec : secuencia de caracter;
+V : caracter;
+Separadores = (" ", ".");
+Band : booleano;
+
+Proceso
+Escribir ("Este programa lista todas las palabras que empiezan con ALG");
+Arrancar (Sec); Avanzar (Sec, V);
+Cont := 0;
+Band := Falso;
+
+Mientras NFDS(Sec) hacer
+    Mientras V en Separadores hacer
+        Avanzar (Sec, V);
+    fin_mientras
+
+    Si NFDS(Sec) y V == "A" entonces
+        Avanzar (Sec, V);
+        Si NFDS (Sec) y V == "L" entonces
+            Avanzar (Sec, V);
+            Si NFDS (Sec) y V == "G" entonces
+                Escribir ("ALG");
+                Band := Verdadero;
+                Avanzar (Sec, V);
+            fin_si
+        fin_si
+    fin_si   
+
+    Mientras NFDS(Sec) y NO (V en Separadores) hacer
+        Si Band entonces
+            Escribir (V);
+        fin_si
+        Avanzar (Sec, V);
+    fin_mientras
+
+    Si Band entonces
+        Escribir ("-");
+        Band := Falso;
+    fin_si
+fin_mientras
+
+Cerrar (Sec);
+
+fin_accion
+    

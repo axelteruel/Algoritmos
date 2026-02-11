@@ -1,0 +1,28 @@
+accion ----- es
+ambiente
+Alumno = registro
+    Nombre : AN (30);
+    Legajo : N (5);
+    Ingreso: Fecha;
+    Sexo : ("F","M);
+    Carrera : ("ISI","IEM","IQ");
+    Nacimiento : Fecha;
+    DNI : N (8);
+    ULTexa : Fecha;
+    Nota : (1..10);
+fin_registro
+
+facu : Archivo de Alumno;
+alu : Alumno;
+
+Proceso
+Abrir E/(facu); Avanzar (facu, alu);
+
+Escribir ("|Nro Legajo | Apellido y nombre | DNI | Carrera|");
+Mientras NFDA (facu) hacer
+    Escribir ("|", alu.Legajo, "|", alu.Nombre, "|", alu.DNI, "|", alu.Carrera, "|");
+    Avanzar (facu, alu);
+Fin_Mientras
+
+Cerrar (facu);
+fin_accion

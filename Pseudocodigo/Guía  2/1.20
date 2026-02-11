@@ -1,0 +1,57 @@
+Accion ----- es
+Ambiente
+Sujetos : secuencia de caracter;
+Predicados : secuencia de caracter;
+Salida : secuencia de caracter;
+S, P : caracter;
+OraS : entero;
+OraP : entero;
+
+Proceso
+Arrancar (Sujetos); Avanzar (Sujetos, S);
+Arrancar (Predicados); Avanzar (Predicados, P);
+Crear (Salida);
+OraP := 0; OraS := 0;
+
+Mientras NFDS (Sujetos) y NFDS (Predicados) hacer
+    OraP := OraP + 1;
+    OraS := OraS + 1;
+    Mientras S <> "." hacer
+        Mientras S <> "," hacer
+            Grabar (Salida, S);
+            Avanzar (Sujetos, S);
+        fin_mientras
+        Avanzar (Sujetos, S);
+    fin_mientras
+
+    Grabar (Salida, S);
+    Avanzar (Sujetos, S);
+
+    Mientras P <> "." hacer
+        Mientras P <> "," hacer
+            Avanzar (Predicados, P);
+        fin_mientras
+        Grabar (Salida, P);
+        Avanzar (Predicados, P);
+    fin_mientras
+
+    Grabar (Salida, P);
+    Avanzar (Predicado, P);
+fin_mientras
+
+Mientras NDFS (Sujetos) hacer
+    Mientras S <> "."
+        Avanzar (Sujetos, S);
+    fin_mientras
+    Avanzar (Sujetos, S);
+    OraS := OraS + 1;
+fin_mientras
+
+Mientras NDFS (Predicado) hacer
+    Mientras P <> "."
+        Avanzar (Predicado, P);
+    fin_mientras
+    Avanzar (Predicado, P);
+    OraP := OraP + 1;
+fin_mientras
+

@@ -1,0 +1,42 @@
+Accion ----- es
+ambiente
+Provincia = registro
+    depto : AN(30);
+    city : AN(30);
+    hab: N(8);
+fin_registro
+
+Salida = registro
+    depto : AN(30);
+    hab : N(8);
+fin_registro
+
+Prov : Archivo de Prov ordenado por depto, city;
+Sal : Archivo de Salida;
+v : Provincia;
+Aux : Salida;
+res_depto : AN(30);
+
+Proceso
+Abrir E/(Prov); Avanzar (Prov, v);
+Abrir /S(Sal);
+Aux.depto := v.depto;
+Aux.hab := 0;
+res_depto := v.depto;
+
+Mientras NFDA(Prov) hacer
+    Si v.depto <> res_depto entonces
+        Escribir (Sal,Aux)
+        Aux.depto := v.depto;
+        Aux.hab := 0;
+        res_depto := v.depto;
+    fin_si
+
+    Aux.hab := Aux.hab + v.hab;
+    Avanzar(Prov,v);
+fin_mientras
+
+Escribir (Sal,Aux);
+Cerrar(Sal); Cerrar(Prov);
+
+fin_accion

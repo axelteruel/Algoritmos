@@ -1,0 +1,6 @@
+Mientras NFDS (Padrón) hacer
+    Si (V MOD 3) == 0 entonces
+        Escribir (Salida, V);
+    fin_si
+    Avanzar (Sec, V)
+fin_mientras 

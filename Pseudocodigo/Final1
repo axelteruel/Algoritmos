@@ -1,0 +1,88 @@
+Accion ejercicio1 es 
+Ambiente
+    sec : secuencia de caracter;
+    v : caracter;
+
+    p, prim := puntero a nodo;
+    Nodo = Registro
+        dato : caracter;
+        prox : puntero a nodo;
+    fin_registro
+
+    procedimiento guardarMSJ () es
+
+    fin_procedimiento
+
+    cantFrasesIlicitas : entero;
+    cantSMS : entero;
+    cantSMSilicito : entero;
+    cantPers : entero;
+    cantPiratas : entero;
+    TotalSMS : entero;
+    esPirata, esIlicito : booleano;
+    porcentajeIlegal : real;
+    promedioMensajes : real;
+    porcentajePiratas : real;
+
+Proceso
+ARR (sec); AVZ (sec, v);
+TotalSMS := 0; cantPiratas := 0;
+cantPers := 0; 
+
+Mientras NFDS (sec) hacer
+    cantPers := cantPers + 1; 
+    esPirata := Falso;
+    Mientras v <> "$" hacer
+        esIlicito := Falso;
+        Mientras v <> "&" hacer
+            si v == "<" entonces
+                esPirata := Verdadero;
+                esIlicito := Verdadero;
+                guardarMSJ ();
+            fin_si
+            AVZ (sec, v);
+        fin_mientras
+
+        cantSMS := cantSMS + 1;
+        Si esIlicito entonces 
+            cantFrasesIlicitas := cantFrasesIlicitas + 1;
+            cantSMSilicito := cantSMSilicito + 1;
+        fin_si
+        AVZ (sec, v);
+    fin_mientras
+
+    Si esPirata entonces
+        cantPiratas := cantPiratas + 1;
+    fin_si
+    TotalSMS := TotalSMS + cantSMS;
+
+    porcentajeIlegal := cantSMSilicito / cantSMS * 100;
+    Escribir ("Persona", cantPers);
+    Escribir ("Frases ilícitas:", cantFrasesIlicitas);
+    Escribir ("Mensajes ilicitos:", porcentajeIlegal, "%");
+    Escribir ("------------------------------------------");
+
+    cantSMSilicito := 0
+    cantFrasesIlicitas := 0;
+    cantSMS := 0;
+fin_mientras
+
+promedioMensajes := TotalSMS / cantPers;
+porcentajePiratas := cantPiratas / cantPers;
+
+Escribir ("Mensajes por persona:", promedioMensajes);
+Escribir ("Porcentaje de personas con mensajes ilícitos:", porcentajePiratas);
+
+fin_accion
+
+Ejercicio 2
+funcion experimento (camino: entero):entero es
+    Según camino hacer
+        == 1: experimento := 3 + experimento(Random())
+        == 2: experimento := 5 + experimento(Random());
+        == 3: experimento := 7;
+fin_funcion 
+
+
+
+

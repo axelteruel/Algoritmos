@@ -1,0 +1,31 @@
+Accion ----- es
+Ambiente
+    C : entero;
+    Letra = ("L", "l");
+    Texto : Secuencia de caracter;
+    V : caracter;
+Proceso
+
+Escribir ("Este programa cuenta la cantidad de palabras que empiezan con i en una secuencia");
+
+Arrancar (Texto); Avanzar (Texto, V);
+C := 0;
+
+Mientras NFDS (Texto) hacer
+    Si V EN Letra entonces
+        C := C + 1;
+    fin_si
+
+    Mientras (V <> " ") y (V <> ".") y (V <> FDS) hacer
+        Avanzar (Texto, V);
+    fin_mientras
+
+    Si (V == " ") o (V == ".") entonces
+        Avanzar (Texto, V);
+    fin_si
+fin_mientras
+
+Escribir ("Cantidad de palabras que empiezan con i:" C);
+Cerrar (Texto);
+
+fin_accion

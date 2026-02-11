@@ -1,0 +1,51 @@
+Accion ----- es
+Ambiente
+    socios: secuencia de entero;
+    libres: secuencia de entero;
+    N: entero;
+    lim_inf: entero;
+    lim_sup: entero;
+Proceso
+    Arrancar (socios); Avanzar (socios, N);
+    Crear (libres);
+    lim_inf := 0;
+    Mientras NFDS (socios) hacer 
+        lim_sup := N;   
+        Si lim_inf < lim_sup entonces
+            Para i := lim_inf hasta (lim_sup - 1) hacer
+                Escribir (libre, i);
+            fin_para
+        fin_si 
+        lim_inf := lim_sup + 1
+        Avanzar (socios);
+    fin_mientras
+    Cerrar (socios); Cerrar (libres);
+fin_accion
+
+2da versión
+
+Accion ----- es
+Ambiente    
+    S1, S2, V: entero;
+    Socios : secuencia de enteros;
+    Libres : secuencia de enteros;
+Proceso
+    Arrancar (Socios); Avanzar (Socios, V);
+    Crear (Libres);
+    S1 := V;
+    Avanzar (Socios, V);
+    Mientras NFDS (Socios) hacer
+        S2 := V;
+        Si S1 < S2-1 entonces
+            Para i := S1+1 hasta S2-1 hacer
+                Escribir (Libres, i);
+            fin_para
+        fin_si
+        S1 := S2
+        Avanzar (Socios, V);
+    fin_mientras
+
+    Cerrar (Socios); Cerrar (Libres);
+fin_accion
+
+

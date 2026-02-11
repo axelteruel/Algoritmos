@@ -1,0 +1,32 @@
+Accion ----- es 
+Ambiente
+ent : secuencia de caracter;
+V : caracter;
+band : entero;
+total : entero;
+
+Proceso
+Escribir ("Este programa cuenta la cantidad de palabras de 4 letras dentro de la secuencia");
+Arrancar (ent); Avanzar (ent, V);
+total := 0;
+
+Mientras NFDS (ent) hacer
+    band := 0;
+    Mientras NFDS(ent) y ( V <> " ") y ( V <> ".") hacer
+        band := band + 1;
+        Avanzar (ent, V);
+    fin_mientras
+
+    Si FDS (ent) entonces
+    sino
+        Avanzar (ent, V);
+    fin_si
+    Si band == 4 entonces
+        total := total + 1;
+    fin_si
+fin_mientras
+
+Cerrar (ent)
+Escribir ("Cantidad de pallabras de 4 letras:", total);
+
+fin_accion

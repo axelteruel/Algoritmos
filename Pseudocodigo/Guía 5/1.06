@@ -1,0 +1,11 @@
+funcion esPar (n:entero): booleano es
+    Si n =< 0 entonces
+        Si n == 0 entonces
+            esPar := verdadero;
+        sino
+            esPar := falso;
+        fin_si
+    sino
+        esPar := esPar(n-2);
+    fin_si
+fin_funcion

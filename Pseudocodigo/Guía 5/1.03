@@ -1,0 +1,7 @@
+función potencia (a:entero, b:entero): entero es
+    Si b == 0 entonces  
+        potencia := 1;
+    Sino
+        potencia := a * potencia(a, b-1);
+    fin_si
+fin_funcion

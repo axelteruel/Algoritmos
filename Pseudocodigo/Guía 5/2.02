@@ -1,0 +1,8 @@
+procedimiento palindromo (pal: Arreglo de [1..P] de caracter, long: entero) es
+    Si long == 1 entonces
+        Escribir (pal[long]);
+    sino
+        Escribir (pal[long]);
+        palindromo (pal, long-1);
+    fin_si
+fin_funcion

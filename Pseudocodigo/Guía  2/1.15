@@ -1,0 +1,40 @@
+Accion ----- es
+Ambiente
+Sec : secuencia de caracter;
+V : caracter;
+Oraciones : entero;
+Palabras : entero;
+Porcentaje : real;
+Bandera := booleano;
+
+Proceso
+Arrancar (Sec); Avanzar (Sec, V);
+Oraciones := 0;
+Palabras := 0;
+Bandera := Falso;
+
+Mientras NFDS (Sec) hacer
+    Mientras V <> "." hacer
+        Mientras V <> " " y V <> "," y V <> "." hacer
+            Avanzar (Sec, V);
+            Bandera := Verdadero;
+        fin_mientras
+
+        Si bandera entonces 
+            Palabras := Palabras + 1;
+        fin_si
+
+        Mientras V == " " o V == "," hacer
+            Avanzar (Sec, V);
+        fin_mientras
+        Bandera := Falso;
+    fin_mientras
+    Oraciones := Oraciones + 1;
+    Avanzar (Sec, V);
+fin_mientras
+
+Porcentaje := Palabras / Oraciones
+Escribir ("El promedio de palabras por oracion es:", Porcentaje);
+
+Cerrar (Sec);
+

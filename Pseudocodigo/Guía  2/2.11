@@ -1,0 +1,66 @@
+Accion ----- es
+ambiente
+
+Alumno = registro
+    sexo : ("Masculino", "Femenino");
+    carrera : ("IEM", "IQ", "ISI");
+    legajo : N(5);
+    ingreso = registro
+        dia : N(2);
+        mes : N(2);
+        año : N(4);
+    fin_registro
+    aprobadas : N(2);
+fin_registro
+
+UTN : archivo de Alumno ordenado por sexo, carrera, legajo;
+alum : Alumno;
+totS_mas, totS_men, totC_mas, totC_men: entero;
+res_sexo : ("Masculino", "Femenino");
+res_carrera : ("IEM", "IQ", "ISI");
+
+Procedimiento Inicializar() es
+    totC_mas := 0;
+    totC_men := 0;
+    totS_mas := 0; 
+    totS_men := 0;
+    res_sexo := alum.sexo;
+    res_carrera := alum.carrera;
+fin_procedimiento
+
+Procedimiento corte_carrera() es
+    Escribir ("Sexo:", res_sexo,"Carrera:", res_carrera);
+    Escribir ("Mas de 20 materias aprobadas:",  )
+fin_procedimiento
+
+
+Proceso
+Abrir E/(UTN); Avanzar (UTN, alum);
+Escribir ("Detalles de alumnos ingresados en 2009");
+
+Inicializar();
+Mientras NFDA(UTN) hacer
+    Si alum.sexo <> res_sexo entonces
+        corte_sexo();
+    sino
+        Si alum.carrera <> res_carrera entonces
+            corte_carrera();
+        fin_si 
+    fin_si 
+
+    Si alum.ingreso.año > 2009 entonces
+        Si alum.aprobadas > 20 entonces
+            totC_mas := totC_mas + 1;
+            totS_mas := totS_mas + 1;
+        sino
+            totC_men := totC_men + 1;
+            totS_men := totS_men + 1;
+        fin_si
+    fin_si
+
+    Avanzar (UTN, alum);
+fin_mientras
+
+Cerrar (UTN); corte_sexo();
+
+fin_accion;

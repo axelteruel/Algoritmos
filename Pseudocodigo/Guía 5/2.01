@@ -1,0 +1,21 @@
+procedimiento inverso(num:entero) es
+    Si num < 10 entonces
+        Según num hacer
+            == 1 : Escribir ("1");
+            == 2 : Escribir ("2"); 
+            == 3 : Escribir ("3");
+            == 4 : Escribir ("4");
+            == 5 : Escribir ("5");
+            == 6 : Escribir ("6");
+            == 7 : Escribir ("7");
+            == 8 : Escribir ("8");
+            == 9 : Escribir ("9");
+            == 0 : Escribir ("0");
+    sino
+        inverso (num MOD 10);
+        inverso (num DIV 10);
+    fin_si
+fin_procedimiento
+
+
+

@@ -1,0 +1,16 @@
+funcion division(a:entero, b:entero): entero es
+    Si a < b entonces
+        división := 0;
+    sino    
+        division := 1 + division(a-b,b);
+    fin_si
+fin_funcion
+
+prueba
+a = 20;
+b = 6;
+division (20,6)
+1 + division (14,6)
+1 + 1 + division (8, 6)
+1 + 1 + 1 + division (2, 6)
+1 + 1 + 1 + 0 

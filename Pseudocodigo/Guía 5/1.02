@@ -1,0 +1,7 @@
+Funcion fibonacci (n:entero):entero es
+    Si n == 1 o n == 2 entonces
+        fibonacci := 1;
+    Sino
+        fibonacci := fibonacci (n-1) + fibonacci (n-2);
+    fin_si
+fin_funcion

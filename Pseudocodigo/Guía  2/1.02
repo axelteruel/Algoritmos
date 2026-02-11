@@ -1,0 +1,21 @@
+Accion ----- es
+Ambiente
+C : entero;
+vocal = ("A", "E", "I", "O", "U");
+letras : secuencia de caracter;
+L : caracter;
+
+Proceso
+C := 1; Arrancar (letras); Avanzar (letras, L);
+Escribir ("Este programa cuenta la cantidad de consonantes dentro de una secuencia de letras del alfabeto");
+Mientras L <> "Z" Hacer
+    Si L NO EN vocal entonces   
+        C := C + 1;
+    fin_si
+    Avanzar (letras, L)
+fin_mientras
+
+Escribir ("Dentro de la secuencia la cantidad de consonantes que contiene es" C);
+Cerrar (letras);
+
+fin_accion

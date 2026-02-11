@@ -1,0 +1,7 @@
+Funcion sumArray (m:arreglo de [1..10] de entero,n: entero): entero es
+    Si n == 10 entonces
+        sumArray := m[10];
+    sino
+        sumArray := m[n] + sumArray (m, n+1);
+    fin_si
+fin_funcion

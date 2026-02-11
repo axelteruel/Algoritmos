@@ -1,0 +1,80 @@
+Accion ----- es
+Ambiente
+Sujetos : secuencia de caracteres;
+Predicados : secuencia de caracteres;
+Vs, Vp : caracter;
+Salida : secuencia de caracteres;
+CantS, CantP : entero;
+
+Proceso
+Arrancar (Sujetos); Avanzar (Sujetos, Vs);
+Arrancar (Predicados); Avanzar (Predicados, Vp);
+Crear (Salida);
+CantP := 0;
+CantS := 0;
+
+Mientras NFDS (Sujetos) y NFDS (Predicados) hacer
+    CantP := CantP + 1;
+    CantS := CantS + 1;
+
+    Mientras NFDS (Sujetos) y Vs <> "," hacer   
+        Grabar (Salida, Vs)
+        Avanzar (Sujetos, Vs)
+    fin_mientras 
+    Avanzar (Sujetos, Vs)
+
+    Mientras NFDS (Sujetos) y Vs <> "," hacer
+        Avanzar (Sujetos, Vs);
+    fin_mientras 
+
+    Si NFDS (Sujetos) entonces
+        Avanzar (Sujetos, Vs)
+    fin_si
+
+    Mientras NFDS (Predicados) y Vp <> "," hacer
+    Avanzar (Predicados, Vp);
+    fin_mientras 
+
+    Mientras NFDS (Predicados) y Vp <> "," hacer   
+        Grabar (Predicados, Vp)
+        Avanzar (Predicados, Vp)
+    fin_mientras 
+    Avanzar (Predicados, Vp)
+
+    Si NFDS (Predicados) entonces
+        Avanzar (Predicados, Vp)
+    fin_si
+fin_mientras
+
+Mientras NFDS (Sujetos) hacer
+    CantS := CantS + 1;
+    Para i:= 1 hasta 2 hacer
+        Mientras NFDS (Sujetos) y Vs <> "," hacer
+            Avanzar (Sujetos, Vs);
+        fin_mientras 
+        Si NFDS (Sujetos) entonces
+            Avanzar (Sujetos, Vs);
+        fin_si
+    fin_para
+fin_mientras
+
+Mientras NFDS (Predicados) hacer
+    CantS := CantS + 1;
+    Para i:= 1 hasta 2 hacer
+        Mientras NFDS (Predicados) y Vp <> "," hacer
+            Avanzar (Predicados, Vp);
+        fin_mientras 
+        Si NFDS (Predicados) entonces
+            Avanzar (Predicados, Vp);
+        fin_si
+    fin_para
+fin_mientras
+
+Cerrar (Sujetos);
+Cerrar (Predicados);
+Cerrar (Salida);
+
+Escribir ("La secuencia de Predicados tiene", CantP, "oraciones");
+Escribir ("La secuencia de Sujetos tiene", CantS, "oraciones");
+
+fin_accion

@@ -1,0 +1,28 @@
+Accion ----- es
+ambiente
+Socios = registro
+    N_Socio : N(10);
+    Nombre : AF(30);
+    Domicilio : AF(30);
+    telefono : N(10);
+    Carrera : ("ISI", "IQ", "IEM");
+    prest : N(2);
+fin_registro
+
+Arch : archivo de Socios;
+soc : Socios;
+Sal : archivo de Socios;
+
+Proceso
+Abrir E/(Arch); Avanzar (Arch, soc);
+Abrir /S(Sal);
+
+Mientras NFDA(Arch) hacer
+    Si (soc.prest > 4) y (soc.Carrera == "ISI") entonces
+        Escribir (Sal,soc);
+    fin_si
+    Avanzar (Arch, soc);
+fin_mientras
+
+Cerrar (Arch);
+Cerrar (Sal);

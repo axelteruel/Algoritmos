@@ -1,0 +1,36 @@
+Accion ----- es
+
+Fecha = registro
+    año = N(4);
+    mes = N(2);
+    dia = N(2);
+fin_registro
+
+Alumno = registro
+    Nombre : AN (30);
+    Legajo : N (5);
+    Ingreso: Fecha;
+    Sexo : ("F","M);
+    Carrera : ("ISI","IEM","IQ");
+    Nacimiento : Fecha;
+    DNI : N (8);
+    ULTexa : Fecha;
+    Nota : (1..10);
+fin_registro
+
+facu : Archivo de Alumno;
+alu : Alumno;
+
+Proceso
+Abrir E/(facu); Avanzar (facu, alu);
+Escribir ("| Legajo | Apellido y Nombre | Carrera | );
+
+Mientras NFDA(facu) hacer
+    Si (alu.Nota > 7) y (alu.Ingreso.año == 2025) entonces
+        Escribir (alu.Legajo, alu.Nombre, alu.Carrera);
+    fin_si
+    Avanzar (facu, alu);
+fin_mientras
+
+Cerrar (facu);
+

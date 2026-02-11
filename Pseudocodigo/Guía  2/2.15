@@ -1,0 +1,99 @@
+Accion ----- es
+ambiente
+
+Alumnos = registro
+    escuela: AN(30);
+    año: N(4);
+    division: AN(1);
+    nombre: AN(30);
+    faltas: N(2);
+fin_registro
+
+Arch : archivo de Alumnos ordenado por escuela, año, division;
+a : Alumno;
+distrito: enterp;
+dias_clases: entero;
+tot_div, lib_año, reg_año, tot_año, tot_esc, faltas_esc, lib_esc : entero;
+situación : ("libre", "regular);
+porcent : Real;
+
+Procedimiento corte_division() es
+    Escribir("Total alumnos Div.", res_div, "|", tot_div);
+    tot_div := 0;
+fin_procedimiento
+
+Procedimiento corte_año() es
+    corte_division();
+    Escribir ("Total alumnos libres", res_año, "año |", lib_año);
+    Escribir ("Total alumnos regulares", res_año, "año |", reg_año);
+    Escribir ("Total alumnos", res_año, "año |", tot_año);
+    tot_año := 0;
+    reg_año := 0;
+    lib_año := 0;
+fin_procedimiento
+
+Procedimiento corte_escuela() es
+    corte_año();
+    Escribir ("Totales escuela");
+    Escribir ("total alumnos:" tot_esc);
+    Escribir ("porcentaje libres:" lib_esc*100/tot_esc);
+    Escribir ("Promedio de inasistencias por alumno", faltas_esc/tot_esc*100);
+    Escribir("--------------------------")
+    tot_esc := 0;
+    lib_esc := 0;
+    faltas_esc := 0;
+fin_procedimiento
+
+Proceso
+Escribir ("Distrito N°:", distrito);
+Escribir ("| Nombre | Porcent. Inasist. | Situación |");
+tot_esc := 0;
+lib_esc := 0;
+faltas_esc := 0;
+tot_año := 0;
+reg_año := 0;
+lib_año := 0;
+tot_div := 0;
+
+Mientras NFDA(Arch) hacer
+    Si res_esc <> v.escuela entonces
+        corte_escuela(),
+        res_esc := v.escuela;
+        res_año := v.año;
+        res_div := v.division;
+    sino
+        Si res_año <> v.año entonces
+            corte_año();
+            res_año := v.año;
+            res_div := v.division;
+        sino
+            Si res_div <> v.division entonces
+                corte_division();
+                res_div := v.division;
+            fin_si
+        fin_si
+    fin_si
+
+    porcent := v.faltas*100/dias_clases
+    Si Porcent > 20 entonces
+        situación := "regular";
+        reg_año := reg_año + 1;
+    sino
+        situación := "libre";
+        lib_año := lib_año + 1;
+        lib_esc := lib_esc + 1;
+    fin_si
+
+    Escribir ("|", v.nombre, "|", porcent, "% |", situación, "|");
+    tot_div := tot_div + 1;
+    tot_año := tot_año + 1;
+    tot_esc := tot_esc + 1;
+    faltas_esc := faltas_esc + v.faltas;
+
+    Avanzar (Arch, v);
+fin_mientras 
+
+corte_escuela();
+
+fin_accion
+

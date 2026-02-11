@@ -1,0 +1,30 @@
+accion ----- es
+ambiente
+factura = registro
+    numero : N(10);
+    fecha : N(8);
+    Total : N(5);
+fin_registro
+
+Arch : archivo de factura;
+fac : factura;
+
+fecha_dada : N(8);
+
+Proceso
+Abrir E/(Arch); Avanzar (Arch, fac);
+Escribir ("Ingresar fecha para el filtrado de las facturas");
+Escribir ("Formato fecha:aaaammdd");
+Leer (facha_dada);
+
+Escribir ("| nro.factura | Fecha | Total |");
+
+Mientras NFDA (Arch) hacer
+    Si (fecha_dada < fac.fecha) y (fac.Total < 1000) entonces 
+        Escribir ("|", fac.numero, "|", fac.fecha, "|", fac.total, "|");
+    fin_si 
+    Avanzar (Arch, fac);
+fin_mientras
+
+Cerrar (Arch);
+fin_accion

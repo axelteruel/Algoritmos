@@ -1,0 +1,21 @@
+Accion ----- es 
+Ambiente
+letras : secuencia de caracter;
+L : caracter;
+C : entero;
+
+Proceso
+C := 0;
+Escribir ("Este programa cuenta la cantidad de letras A dentro de una secuencia que contiene letras del alfabeto")
+Arrancar (letras); Avanzar (letras, L);
+Mientras L <> "*" Hacer
+    Si L == "A" entonces
+        C := C + 1
+    fin_si
+    Avanzar (letras, L);
+fin_mientras
+
+Escribir ("Esta secuencia tiene" C, "Letras A");
+Cerrar (letras);
+
+fin_accion

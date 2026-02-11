@@ -1,0 +1,36 @@
+Accion ----- es
+Ambiente
+Sec : secuencia de caracter;
+V : caracter;
+Cont : entero;
+
+Proceso
+Arrancar (Sec); Avanzar (Sec, V);
+Cont := 0;
+
+Mientras NFDS (Sec) y V <> "," hacer
+    Avanzar (Sec, V);
+fin_mientras
+
+Si NFDS (Sec) entonces
+    Avanzar (Sec, V);
+fin_si
+
+Mientras NFDS (Sec) hacer
+    Mientras NFDS (Sec) y V <> "," hacer
+        Cont := Cont + 1;
+        Avanzar (Sec, V);
+    fin_mientras
+
+    Si V == "," entonces
+        Escribir ("Cantidad de caracteres entre comas:", Cont)
+        Cont := 0;
+        Avanzar (Sec, V);
+    fin_si
+fin_mientras
+
+Cerrar (Sec);
+
+fin_accion
+
+

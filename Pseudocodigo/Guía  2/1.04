@@ -1,0 +1,20 @@
+Accion ----- es
+Ambiente
+Socios : secuencia de entero;
+N : entero;
+Total : entero;
+
+Proceso
+Escribir ("Este programa cuenta la cantidad de socios registrados dada una secuencia de entrada");
+Arrancar (Socios); Avanzar (Socios, N);
+Total := 0;
+
+Mientras NFDS (Socios) hacer
+    Total := Total + 1;
+    Avanzar (Socios, N);
+fin_mientras
+
+Escribir ("La cantidad total de socios es" Total);
+Cerrar (socios);
+
+fin_accion.

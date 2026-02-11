@@ -1,0 +1,38 @@
+Accion ----- es
+Ambiente
+    CUIT : secuencia de entero;
+    Pagar : secuencia de caracter;
+    potencia: entero;
+    V : entero;
+    validos = ("0","1","2","3");
+    cuit_tratado : entero;
+    aux : entero;
+    separadora = "-";   
+Proceso
+Escribir ("Este programa indica el CUIT de los empleados que deben recibir su paga");
+
+Arrancar (CUIT); Avanzar (CUIT, V);
+Crear (Pagar);
+
+Si V == 0 entonces
+    Escribir ("Error, secuencia vacía");
+fin_si
+
+Mientras V <> 0 hacer
+    potencia := 10000000000;
+    Si (V MOD 100 DIV 10) EN validos entonces
+        cuit_tratado := V;
+        Para i:=1 hasta 10 hacer
+            aux := cuit_tratado DIV potencia;
+            Escribir (Pagar, aux);
+            cuit_tratado := cuit_tratado MOD potencia;
+            potencia := potencia DIV 10;
+        fin_para
+        Escribir (Pagar, separadora);
+    fin_si
+    Avanzar (CUIT, V);
+fin_mientras
+
+Cerrar (CUIT); Cerrar (Pagar);
+fin_accion
+

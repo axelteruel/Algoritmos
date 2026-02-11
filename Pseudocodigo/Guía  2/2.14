@@ -1,0 +1,62 @@
+Accion ----- es
+ambiente
+Ciudad = registro
+    radio : N(5);
+    manz : N(5);
+    Nro_casa : N(5);
+    cond : ("muy buena", "buena", "mala");
+    hab : N(2);
+fin_registro
+
+city : archivo de Ciudad ordenado por radio, manz, Nro_casa;
+v : Ciudad;
+
+tot_manz, tot_radio, total: entero;
+res_manz, res_radio: N(5);
+
+Procedimiento corte_manz () es
+    Escribir ("Cantidad de casas muy buena manzana", res_manz, ":", tot_manz);
+    tot_manz := 0;
+    res_manz := v.manz;
+fin_procedimiento
+
+Procedimiento corte_radio () es
+    corte_manz();
+    Escribir ("Cantidad de casas muy buena en radio", res_radio, ":", tot_radio);
+    tot_radio := 0;
+    res_radio := v.radio;
+fin_procedimiento
+
+Procedimiento Resultados() es
+    Escribir ("Cantidad de casas muy buena manzana", res_manz, ":", tot_manz);
+    Escribir ("Cantidad de casas muy buena en radio", res_radio, ":", tot_radio);
+    Escribir ("En la ciudad de Resistencia hay", total, "viviendas con condicion muy buena");
+fin_procedimiento
+
+Proceso
+Abrir E/(city); Avanzar(city, v);
+tot_manz := 0; tot_radio := 0; total := 0;
+res_manz := v.manz; res_radio := v.radio;
+
+Mientras NFDA(city) hacer
+    Si v.radio <> res_radio entonces
+        corte_radio();
+    sino
+        Si v.manz <> res_manz entonces
+            corte_manz();
+        fin_si
+    fin_si 
+
+    Si v.cond == "muy buena" entonces 
+        tot_manz := tot_manz + 1;
+        tot_radio := tot_radio + 1;
+        total := total + 1;
+    fin_si
+
+    Avanzar (city, v);
+fin_mientras
+
+Resultados();
+Cerrar(city);
+
+fin_accion

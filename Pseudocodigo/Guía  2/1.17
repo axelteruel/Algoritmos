@@ -1,0 +1,51 @@
+Accion ----- es
+Ambiente
+Telegrama : secuencia de caracter;
+V : caracter;
+Palabras : entero;
+Letras : entero;
+Promedio : Real;
+Separadores = (".", ",", " ")
+V1, V2 : Real;
+Costo : Real;
+
+Proceso
+Escribir ("Calculadora de costo de Telegrama");
+Escribir ("Ingrese el costo en pesos por palabra en telegramas que tengan 5 o menos letras por palabra");
+Leer (V1);
+Escribir ("Ingrese el costo en pesos por palabra en telegramas que tengan más de 5 letras por palabra");
+Leer (V2);
+
+Arrancar (Telegrama); Avanzar (Telegrama, V);
+Palabras := 0; Letras := 0;
+
+Mientras NFDS (Telegrama) hacer
+    Mientras V en Separadores y NFDS (Telegrama) hacer
+        Avanzar (Telegrama, V);
+    fin_mientras
+
+    Si NFDS (Telegrama) entonces
+        Mientras NFDS (Telegrama) y NO (V en Separadores) hacer
+            Letras := Letras + 1;
+            Avanzar (Telegrama, V);
+        fin_mientras
+        Palabras := Palabras + 1;
+    fin_si
+fin_mientras 
+
+Si Palabras <> 0 entonces
+    Promedio := Letras / Palabras;
+    Si Promedio > 5 entonces
+        Costo := Palabras * V2
+        Escribir ("Valor del telegrama:", Costo);
+    Sino
+        Costo := Palabras * V1
+        Escribir ("Valor del telegrama:", Costo);
+    fin_si
+Sino
+    Escribir ("Error, el telegrama no tiene palabras");
+fin_si
+
+Cerrar (Telegrama);
+fin_accion
+    

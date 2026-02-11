@@ -1,0 +1,30 @@
+Accion ----- es
+Ambiente
+Nombres : secuencia de caracter;
+DNI : secuencia de caracter;
+Salida : secuencia de caracter;
+N : caracter;
+D : caracter;
+
+Proceso
+Arrancar (Nombres); Avanzar (Nombres, N);
+Arrancar (DNI); Avanzar (DNI, D);
+Crear (Salida);
+
+Mientras NFDS (DNI) hacer
+    Para i:= 1 hasta 8, hacer
+        Grabar (Salida);
+        Avanzar (DNI, D);
+    fin_para
+    Grabar (Salida, ",");
+    
+    Mientras (N <> " ") o NFDS(Salida) hacer
+        Grabar (Salida, N);
+        Avanzar (Nombres, N);
+    fin_mientras
+    Grabar(Salida, "#");    
+
+    Si NFDS (Nombres) entonces
+        Avanzar (Nombres, N);
+    fin_si 
+fin_mientras

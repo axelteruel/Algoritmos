@@ -1,0 +1,167 @@
+Accion ----- es
+Ambiente
+Art : secuencia de caracter;
+Obr : secuencia de caracter;
+Sal : secuencia de caracter;
+A, O: caracter;
+obrVend: entero;
+AuxObrVend: entero;
+obrTotal: entero;
+obrR: entero;
+banderaSalto : booleano;
+salto : entero;
+auxObrArtista : entero; 
+
+Proceso
+Arrancar (Art); Avanzar (Art, A);
+Arrancar (Obr); Avanzar (Obr, O);
+Crear (Sal);
+obrVend := 0;
+obrR := 0;
+obrTotal := 0;
+
+Mientras NFDS (Art) hacer
+    Si A == "R" entonces
+        Escribir (Sal, A); Avanzar (Art, A); 
+        Escribir (Sal, A); Avanzar (Art, A);
+        Mientras A <> "+" hacer
+            Escribir (Sal, A);
+            Avanzar (Art, A);
+        fin_mientras
+        banderaSalto := Verdadero;
+        Avanzar (Art, A);
+    sino 
+        Avanzar (Art, A); Avanzar (Art, A);
+    fin_si
+
+    Si banderaSalto entonces
+        salto := 3;
+    sino 
+        salto := 1;
+    fin_si
+
+    Para i:= salto hasta 4, hacer
+        Mientras A <> "+" hacer
+            Avanzar (Art, A);
+        fin_mientras
+        Avanzar (Art, A);
+    fin_para
+
+    auxObrArtista := caracterAnumero (A);
+    Avanzar (Art, A); Avanzar (Art, A);
+
+    Para i:= 1 hasta auxObrArtista, hacer
+        Mientras O <> "/" hacer
+            Si banderaSalto entonces 
+                Escribir (Sal, "+");
+                Para i := 1 hasta 2 hacer
+                    Repetir
+                        Escribir (Sal, O);
+                        Avanzar (Obr, O);
+                    Hasta que 
+
+----------------------------------------------------
+Accion ----- es
+Ambiente
+    art : secuencia de caracter;
+    obr : secuencia de caracter;
+    sal : secuencia de caracter;
+    a, o : caracter;
+    totalObras : entero;
+    obrasRenacentistas : entero;
+    cantObrasArt : entero;
+    masObrasVendidas : entero;
+    auxObrasVendidas : entero;
+    esRenacentista : booleano;
+    iteracionesObras : entero;
+
+Proceso
+Arrancar (art); Avanzar (art, a);
+Arrancar (obr); Avanzar (obr, o);
+Crear (sal);
+totalObras := 0;
+obrasRenacentistas := 0;
+masObrasVendidas := 0;
+
+Mientras NFDS (art) hacer
+    cantObrasArt := 0;
+    auxObrasVendidas := 0;
+    esRenacentista := Falso;
+
+    Si a == "R" entonces
+        esRenacentista := Verdadero;
+        Escribir (sal, a); 
+        Avanzar (art, a);
+        Repetir
+            Escribir (sal, a);
+            Avanzar (art, a);
+        Siempre que a <> "+"
+        Para i:= 1 hasta 2, hacer   
+            Repetir 
+                Avanzar (art, a);
+            Siempre que a <> "+"
+        fin_para
+        Avanzar (art, a);
+        cantObrasArt := caracterAentero (a);
+        obrasRenacentistas := obrasRenacentistas + cantObrasArt
+    sino
+        Para i:= 1 hasta 4, hacer
+            Repetir 
+                Avanzar (art, a);
+            Siempre que a <> "+"
+        fin_para
+        cantObrasArt := caracterAentero (a);
+    fin_si
+    totalObras := totalObras + cantObrasArt
+    Avanzar (art, a); Avanzar (art, a);
+
+    Para i:= 1 hasta cantObrasArt, hacer
+        Si esRenacentista entonces 
+            Escribir (sal, "+");
+            Para i:= 1 hasta 2, hacer
+                Repetir
+                    Escribir (sal, o);
+                    Avanzar (obr, o);
+                Siempre que o <> ","
+            fin_para
+        fin_si
+
+        Si esRenacentista entonces
+            iteracionesObras := 3;
+        sino
+            iteracionesObras := 1;
+        fin_si
+
+        Para i:=iteracionesObras hasta 3, hacer
+            Repetir 
+                Avanzar (obr, o);
+            Siempre que o <> ","
+        fin_para
+        Avanzar (obr, o);
+        Si o == "V" entonces
+            auxObrasVendidas := auxObrasVendidas + 1;
+        fin_si
+
+        Avanzar (obr, o); Avanzar (obr, o);
+    fin_para
+
+    Si auxObrasVendidas > masObrasVendidas entonces
+            masObrasVendidas := auxObrasVendidas;
+    fin_si
+fin_mientras
+
+Cerrar (sal);
+Cerrar (obr);
+Cerrar (art);
+
+
+
+
+
+
+
+
+
+
+
+

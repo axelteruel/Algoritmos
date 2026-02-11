@@ -1,0 +1,7 @@
+Función Factorial(N:entero):entero es
+    Si N == 0 o N == 1 entonces
+        Factorial := 1;
+    Sino
+        Factorial := N * Factorial(N-1);
+    fin_si
+fin_funcion
